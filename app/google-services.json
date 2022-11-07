@@ -1,0 +1,105 @@
+{
+  "project_info": {
+    "project_number": "414105722315",
+    "project_id": "wildrunning-66e1d",
+    "storage_bucket": "wildrunning-66e1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414105722315:android:c0133280ba652658a32a4e",
+        "android_client_info": {
+          "package_name": "com.example.wildrunning2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414105722315-1lce02q19ej8k0ei1g5lgiohfj0dm6ul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADNEdjYv5FifGSy-Z_-U_c0968Bgoihuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414105722315-1lce02q19ej8k0ei1g5lgiohfj0dm6ul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414105722315:android:b501eba047351bcea32a4e",
+        "android_client_info": {
+          "package_name": "com.example.xercise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414105722315-6ej1a7bkcuo7uaqfthhc6a0rkrd6abb3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.xercise",
+            "certificate_hash": "d07ab3ef6c8d77398cc94682c218c22292fbb6dd"
+          }
+        },
+        {
+          "client_id": "414105722315-1lce02q19ej8k0ei1g5lgiohfj0dm6ul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADNEdjYv5FifGSy-Z_-U_c0968Bgoihuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414105722315-1lce02q19ej8k0ei1g5lgiohfj0dm6ul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414105722315:android:0a8c0d6bfa73d565a32a4e",
+        "android_client_info": {
+          "package_name": "com.example.xersice2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414105722315-1lce02q19ej8k0ei1g5lgiohfj0dm6ul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADNEdjYv5FifGSy-Z_-U_c0968Bgoihuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414105722315-1lce02q19ej8k0ei1g5lgiohfj0dm6ul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

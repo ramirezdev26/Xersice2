@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/txtInvitation"
+        style="@style/viewCustom"
+        android:layout_margin="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/bar_title_terms"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:background="@color/black_trans"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tvTerms1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/terms1"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_margin="8dp"/>
+
+</LinearLayout>
