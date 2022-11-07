@@ -25,6 +25,7 @@ import com.example.xersice2.Utility.animateViewInt
 import com.example.xersice2.Utility.getSecFromWatch
 import com.example.xersice2.Utility.setHeightLinearLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.api.Distribution.BucketOptions.Linear
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private lateinit var swIntervalMode: Switch
     private lateinit var swChallenges: Switch
+    private lateinit var swVolumes: Switch
 
     private lateinit var npChallengeDistance: NumberPicker
     private lateinit var npChallengeDurationHH: NumberPicker
@@ -41,6 +43,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private var challengeDistance: Float = 0f
     private var challengeDuration: Int = 0
+
+    private lateinit var tvChrono: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,21 +93,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         tvUser.text = usermail
     }
 
-    private fun initObjects(){
+    private fun initStopWatch() {
+        tvChrono.text = getString(R.string.init_stop_watch_value)
+    }
 
-        var lyMap = findViewById<LinearLayout>(R.id.lyMap)
-        var lyFragmentMap = findViewById<LinearLayout>(R.id.lyFragmentMap)
+    private fun initObjects(){
+        tvChrono = findViewById(R.id.tvChrono)
+        tvChrono.setTextColor(ContextCompat.getColor(this, R.color.white))
+
+        val lyMap = findViewById<LinearLayout>(R.id.lyMap)
+        val lyFragmentMap = findViewById<LinearLayout>(R.id.lyFragmentMap)
         val lyIntervalModeSpace = findViewById<LinearLayout>(R.id.lyIntervalModeSpace)
         val lyIntervalMode = findViewById<LinearLayout>(R.id.lyIntervalMode)
         val lyChallengesSpace = findViewById<LinearLayout>(R.id.lyChallengesSpace)
         val lyChallenges = findViewById<LinearLayout>(R.id.lyChallenges)
         val lySettingsVolumesSpace = findViewById<LinearLayout>(R.id.lySettingsVolumesSpace)
         val lySettingsVolumes = findViewById<LinearLayout>(R.id.lySettingsVolumes)
+        val lySoftTrack = findViewById<LinearLayout>(R.id.lySoftTrack)
+        val lySoftVolume = findViewById<LinearLayout>(R.id.lySoftVolume)
 
         setHeightLinearLayout(lyMap, 0)
         setHeightLinearLayout(lyIntervalModeSpace, 0)
         setHeightLinearLayout(lyChallengesSpace, 0)
         setHeightLinearLayout(lySettingsVolumesSpace, 0)
+        setHeightLinearLayout(lySoftTrack, 0)
+        setHeightLinearLayout(lySoftVolume, 0)
 
         lyFragmentMap.translationY = -300f
         lyIntervalMode.translationY = -300f
@@ -112,6 +126,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         swIntervalMode = findViewById(R.id.swIntervalMode)
         swChallenges = findViewById(R.id.swChallenges)
+        swVolumes = findViewById(R.id.swVolumes)
 
         npChallengeDistance = findViewById(R.id.npChallengeDistance)
         npChallengeDurationHH = findViewById(R.id.npChallengeDurationHH)
@@ -143,6 +158,43 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun callRecordActivity(){
         val intent = Intent(this, RecordActivity::class.java)
         startActivity(intent)
+    }
+
+    fun inflateIntervalMode(v: View){
+        val lyIntervalMode = findViewById<LinearLayout>(R.id.lyIntervalMode)
+        val lyIntervalModeSpace = findViewById<LinearLayout>(R.id.lyIntervalModeSpace)
+        val lySoftTrack = findViewById<LinearLayout>(R.id.lySoftTrack)
+        val lySoftVolume = findViewById<LinearLayout>(R.id.lySoftVolume)
+        val tvRounds = findViewById<TextView>(R.id.tvRounds)
+
+        if (swIntervalMode.isChecked){
+            animateViewInt(swIntervalMode, "textColor", ContextCompat.getColor(this, R.color.orange), 500)
+            setHeightLinearLayout(lyIntervalModeSpace, 600)
+            animateViewFloat(lyIntervalMode, "translationY", 0f, 500)
+            animateViewFloat(tvChrono, "translationX", -110f, 500)
+            tvRounds.setText(R.string.rounds)
+            animateViewInt(tvRounds, "textColor", ContextCompat.getColor(this, R.color.white), 500)
+
+            setHeightLinearLayout(lySoftTrack, 120)
+            setHeightLinearLayout(lySoftVolume, 120)
+            if (swVolumes.isChecked){
+                var lySettingsVolumesSpace = findViewById<LinearLayout>(R.id.lySettingsVolumesSpace)
+                setHeightLinearLayout(lySettingsVolumesSpace, 600)
+            }
+        }else{
+            swIntervalMode.setTextColor(ContextCompat.getColor(this, R.color.white))
+            setHeightLinearLayout(lyIntervalModeSpace, 0)
+            lyIntervalMode.translationY = -200f
+            animateViewFloat(tvChrono, "trnaslationX", 0f, 500)
+            tvRounds.text = ""
+            setHeightLinearLayout(lySoftTrack, 0)
+            setHeightLinearLayout(lySoftVolume, 0)
+            if (swVolumes.isChecked){
+                var lySettingsVolumesSpace = findViewById<LinearLayout>(R.id.lySettingsVolumesSpace)
+                setHeightLinearLayout(lySettingsVolumesSpace, 400)
+            }
+
+        }
     }
 
     fun inflateChallenges(v: View){
@@ -217,14 +269,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun inflateVolumes(v: View){
-        var swVolumes = findViewById<Switch>(R.id.swVolumes)
         val lySettingsVolumesSpace = findViewById<LinearLayout>(R.id.lySettingsVolumesSpace)
         val lySettingsVolumes = findViewById<LinearLayout>(R.id.lySettingsVolumes)
 
         if(swVolumes.isChecked){
             animateViewInt(swVolumes, "textColor", ContextCompat.getColor(this, R.color.orange), 500)
 
-            var swIntervalMode = findViewById<Switch>(R.id.swIntervalMode)
             var value = 400
             if(swIntervalMode.isChecked) value = 600
 
