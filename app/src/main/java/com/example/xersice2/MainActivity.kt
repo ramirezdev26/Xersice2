@@ -27,6 +27,8 @@ import com.example.xersice2.Utility.setHeightLinearLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.api.Distribution.BucketOptions.Linear
 import com.google.firebase.auth.FirebaseAuth
+import me.tankery.lib.circularseekbar.CircularSeekBar
+import me.tankery.lib.circularseekbar.CircularSeekBar.OnCircularSeekBarChangeListener
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -45,6 +47,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var challengeDuration: Int = 0
 
     private lateinit var tvChrono: TextView
+
+    private lateinit var csbRunWalk: CircularSeekBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -128,10 +132,35 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         swChallenges = findViewById(R.id.swChallenges)
         swVolumes = findViewById(R.id.swVolumes)
 
+        csbRunWalk = findViewById(R.id.csbRunWalk)
+
         npChallengeDistance = findViewById(R.id.npChallengeDistance)
         npChallengeDurationHH = findViewById(R.id.npChallengeDurationHH)
         npChallengeDurationMM = findViewById(R.id.npChallengeDurationMM)
         npChallengeDurationSS = findViewById(R.id.npChallengeDurationSS)
+
+        csbRunWalk.setOnSeekBarChangeListener(object : OnCircularSeekBarChangeListener {
+            override fun onProgressChanged(circularSeekBar: CircularSeekBar?, progress: Float, fromUser: Boolean) {
+
+                var STEPS_UX: Int = 15
+                var set: Int = 0
+                var p = progress.toInt()
+
+                if (p%STEPS_UX != 0){
+                    while (p >= 60) p -= 60
+                    while (p >= STEPS_UX) p -= STEPS_UX
+                    if (STEPS_UX - p > STEPS_UX/2) set = -1 * p
+                    else set = STEPS_UX - p
+
+                    csbRunWalk.progress = csbRunWalk.progress + set
+                }
+            }
+            override fun onStopTrackingTouch(seekBar: CircularSeekBar) {
+            }
+
+            override fun onStartTrackingTouch(seekBar: CircularSeekBar) {
+            }
+        })
     }
 
     fun callSignOut (view: View) {
